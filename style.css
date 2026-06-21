@@ -334,6 +334,7 @@ footer {
   background-color: var(--color-dark);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 footer a {
   color: var(--color-accent);
 }
