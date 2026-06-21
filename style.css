@@ -335,9 +335,7 @@ footer {
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-footer a {
-  color: var(--color-accent);
-}
+
 
 @media (width <= 768px) {
   .nav-bar .nav-inner {
