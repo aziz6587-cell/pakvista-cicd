@@ -1,0 +1,45 @@
+# ============================================================
+# cd-staging.yml - CD Pipeline for Staging Environment
+# University of Central Punjab | DevOps Fundamentals Spring 2026
+# Authored by: Member 4
+#
+# Trigger : push to the 'staging' branch (i.e. after PR merge)
+# Purpose : Trigger a deployment on the pakvista-staging Render
+#           service using its deploy hook URL.
+# ============================================================
+
+name: CD - Staging
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  cd-staging:
+    name: Deploy to Render (Staging)
+    runs-on: ubuntu-latest
+
+    # Declare the GitHub Environment so the environment-level
+    # secret RENDER_DEPLOY_HOOK_STAGING_URL is injected into this job.
+    environment: staging
+
+    steps:
+      # -- Step 1: Checkout ----------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # -- Step 2: Environment is declared above (job-level) ---
+      # The 'environment: staging' key above tells GitHub
+      # Actions to load secrets from the 'staging' environment,
+      # including RENDER_DEPLOY_HOOK_STAGING_URL.
+
+      # -- Step 3: Deploy via Render Deploy Hook ----------
+      - name: Trigger deployment on Render (Staging)
+        run: |
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_STAGING_URL }}"
+
+      # -- Step 4: Confirm deployment ----------
+      - name: Confirm deployment
+        run: |
+          echo "Deployment to staging triggered at $(date)"
