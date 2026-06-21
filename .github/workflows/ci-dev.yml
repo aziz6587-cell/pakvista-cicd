@@ -1,12 +1,3 @@
-# ============================================================
-# ci-dev.yml – CI Pipeline for Development Environment
-# University of Central Punjab | DevOps Fundamentals Spring 2026
-# Authored by: Member 1 (Team Lead)
-#
-# Trigger : pull_request targeting the 'develop' branch
-# Purpose : Lint HTML & CSS, build with Parcel, build and push
-#           a Docker image tagged :dev-latest and :dev-<sha>
-# ============================================================
 
 name: CI – Development
 
