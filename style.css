@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity */
+
 /* ============================================================
    PakVista – Shared Stylesheet
    University of Central Punjab | DevOps Fundamentals Spring 2026
@@ -334,8 +336,9 @@ footer {
   background-color: var(--color-dark);
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-
+footer a {
+  color: var(--color-accent);
+}
 
 @media (width <= 768px) {
   .nav-bar .nav-inner {
