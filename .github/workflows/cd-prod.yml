@@ -1,14 +1,5 @@
-# ============================================================
-# cd-prod.yml - CD Pipeline for Production Environment
-# University of Central Punjab | DevOps Fundamentals Spring 2026
-# Authored by: Member 1 (Team Lead)
-#
-# Trigger : push to the 'main' branch (i.e. after PR merge from staging)
-# Purpose : Trigger a deployment on the pakvista-prod Render
-#           service using its deploy hook URL.
-# ============================================================
 
-name: CD - Production
+name: CD – Production
 
 on:
   push:
@@ -20,26 +11,20 @@ jobs:
     name: Deploy to Render (Production)
     runs-on: ubuntu-latest
 
-    # Declare the GitHub Environment so the environment-level
-    # secret RENDER_DEPLOY_HOOK_PROD_URL is injected into this job.
     environment: production
 
     steps:
-      # -- Step 1: Checkout ----------
+      # ── Step 1: Checkout ────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # -- Step 2: Environment is declared above (job-level) ---
-      # The 'environment: production' key above tells GitHub
-      # Actions to load secrets from the 'production' environment,
-      # including RENDER_DEPLOY_HOOK_PROD_URL.
-
-      # -- Step 3: Deploy via Render Deploy Hook ----------
+    =
+      # ── Step 3: Deploy via Render Deploy Hook ────────────────
       - name: Trigger deployment on Render (Production)
         run: |
           curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_PROD_URL }}"
 
-      # -- Step 4: Confirm deployment ----------
+      # ── Step 4: Confirm deployment ───────────────────────────
       - name: Confirm deployment
         run: |
           echo "Deployment to production triggered at $(date)"
